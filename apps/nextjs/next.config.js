@@ -15,7 +15,12 @@ const config = {
 
   // Allow optimizing avatar images from GitHub
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
   },
 
   /** We already do linting and typechecking as separate tasks in CI */
