@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
-import { signOut } from "../auth/actions";
+import { signOut } from "~/app/auth/actions";
 
 export async function AuthShowcase() {
   const supabase = createServerComponentClient({ cookies });

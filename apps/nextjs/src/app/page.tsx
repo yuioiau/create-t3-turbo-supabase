@@ -11,11 +11,8 @@ import {
 export const runtime = "edge";
 
 export default async function HomePage() {
-  // You don't need to fetch these here, just showing different usages
-  // If you don't want the Suspense loading state, you could pass these
-  // posts as props as use as initialData in the query.
-  const posts = await api.post.all.query();
-  console.log("RSC Posts:", posts);
+  // You can await this here if you don't want to show Suspense fallback below
+  const posts = api.post.all();
 
   return (
     <main className="flex h-screen flex-col items-center bg-zinc-900 text-zinc-200">
@@ -37,7 +34,7 @@ export default async function HomePage() {
               </div>
             }
           >
-            <PostList />
+            <PostList posts={posts} />
           </Suspense>
         </div>
       </div>
