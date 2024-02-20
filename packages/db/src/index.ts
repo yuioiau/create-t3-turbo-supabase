@@ -1,9 +1,10 @@
 import { sql } from "@vercel/postgres";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 
-import * as schema from "./schema";
+import * as post from "./schema/post";
+import * as profile from "./schema/profile";
 
-export { schema };
+export const schema = { ...post, ...profile };
 
 export * from "drizzle-orm";
 

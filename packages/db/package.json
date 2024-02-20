@@ -2,28 +2,32 @@
   "name": "@acme/db",
   "version": "0.1.0",
   "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "lint": "eslint .",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "push": "drizzle-kit push:pg",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint .",
+    "push": "pnpm with-env drizzle-kit push:pg",
+    "studio": "pnpm with-env drizzle-kit studio",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.5.1",
-    "drizzle-orm": "^0.29.1"
+    "@vercel/postgres": "^0.7.2",
+    "drizzle-orm": "^0.29.3"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:^0.2.0",
     "@acme/prettier-config": "workspace:^0.1.0",
     "@acme/tsconfig": "workspace:^0.1.0",
     "dotenv-cli": "^7.3.0",
-    "drizzle-kit": "beta",
-    "eslint": "^8.53.0",
-    "prettier": "^3.1.0",
+    "drizzle-kit": "^0.20.14",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   },
   "eslintConfig": {
