@@ -13,10 +13,10 @@ const defineConfig = (): ExpoConfig => ({
   name: "expo",
   slug: "expo",
   scheme: "expo",
-  version: "2.0.0",
+  version: "0.1.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
-  userInterfaceStyle: "dark",
+  userInterfaceStyle: "automatic",
   splash: {
     image: "./assets/icon.png",
     resizeMode: "contain",
@@ -30,6 +30,9 @@ const defineConfig = (): ExpoConfig => ({
     bundleIdentifier: "your.bundle.identifier",
     supportsTablet: true,
     usesAppleSignIn: true,
+    config: {
+      usesNonExemptEncryption: false,
+    },
   },
   android: {
     package: "your.bundle.identifier",
@@ -48,7 +51,8 @@ const defineConfig = (): ExpoConfig => ({
   //   },
   // },
   plugins: [
-    "./expo-plugins/with-modify-gradle.js",
+    "expo-router",
+    "expo-secure-store",
     "expo-apple-authentication",
   ],
 });

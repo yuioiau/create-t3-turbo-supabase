@@ -26,11 +26,7 @@ export const postRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(
-      z.object({
-        CreatePostSchema
-      }),
-    )
+    .input(CreatePostSchema)
     .mutation(async ({ ctx, input }) => {
       function getNameFromUser() {
         const meta = ctx.user.user_metadata;
