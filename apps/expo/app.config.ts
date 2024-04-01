@@ -1,4 +1,4 @@
-import type { ExpoConfig } from "@expo/config";
+import type { ConfigContext, ExpoConfig } from "@expo/config";
 
 if (
   !process.env.EXPO_PUBLIC_SUPABASE_URL ||
@@ -9,7 +9,8 @@ if (
   );
 }
 
-const defineConfig = (): ExpoConfig => ({
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
   name: "expo",
   slug: "expo",
   scheme: "expo",
@@ -50,11 +51,5 @@ const defineConfig = (): ExpoConfig => ({
   //     projectId: "your-project-id",
   //   },
   // },
-  plugins: [
-    "expo-router",
-    "expo-secure-store",
-    "expo-apple-authentication",
-  ],
+  plugins: ["expo-router", "expo-secure-store", "expo-apple-authentication"],
 });
-
-export default defineConfig;
