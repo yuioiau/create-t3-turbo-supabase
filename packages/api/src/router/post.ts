@@ -1,3 +1,4 @@
+import type { TRPCRouterRecord } from "@trpc/server";
 import { TRPCError } from "@trpc/server";
 import { nanoid } from "nanoid";
 import { z } from "zod";
@@ -5,9 +6,9 @@ import { z } from "zod";
 import { desc, eq, schema } from "@acme/db";
 import { CreatePostSchema } from "@acme/validators";
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import { protectedProcedure, publicProcedure } from "../trpc";
 
-export const postRouter = createTRPCRouter({
+export const postRouter = {
   all: publicProcedure.query(({ ctx }) => {
     return ctx.db.query.post.findMany({
       with: { author: true },
@@ -79,4 +80,4 @@ export const postRouter = createTRPCRouter({
 
       return ctx.db.delete(schema.post).where(eq(schema.post.id, input));
     }),
-});
+} satisfies TRPCRouterRecord;

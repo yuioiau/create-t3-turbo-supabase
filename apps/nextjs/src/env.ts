@@ -3,8 +3,9 @@ import { z } from "zod";
 
 export const env = createEnv({
   shared: {
-    NODE_ENV: z.enum(["development", "test", "production"]),
-    VERCEL_ENV: z.enum(["development", "preview", "production"]).optional(),
+    NODE_ENV: z
+      .enum(["development", "test", "production"])
+      .default("development"),
   },
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app isn't
@@ -26,8 +27,6 @@ export const env = createEnv({
    */
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    VERCEL_ENV: process.env.VERCEL_ENV,
-    POSTGRES_URL: process.env.POSTGRES_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
