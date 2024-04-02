@@ -1,8 +1,9 @@
 import { cache } from "react";
-import { cookies, headers } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { headers } from "next/headers";
 
 import { createCaller, createTRPCContext } from "@acme/api";
+
+import { createClient } from "~/utils/supabase/server";
 
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
@@ -12,7 +13,7 @@ const createContext = cache(async () => {
   const heads = new Headers(headers());
   heads.set("x-trpc-source", "rsc");
 
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createClient();
 
   return createTRPCContext({
     supabase,

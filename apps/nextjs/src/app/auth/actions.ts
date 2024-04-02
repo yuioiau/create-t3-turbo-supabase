@@ -1,11 +1,12 @@
 "use server";
 
-import { cookies, headers } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+
+import { createClient } from "~/utils/supabase/server";
 
 export const signInWithPassword = async (email: string, password: string) => {
-  const supabase = createServerActionClient({ cookies });
+  const supabase = createClient();
 
   const { error, data } = await supabase.auth.signInWithPassword({
     email,
@@ -17,14 +18,14 @@ export const signInWithPassword = async (email: string, password: string) => {
 };
 
 export const signUp = async (email: string, password: string) => {
-  const supabase = createServerActionClient({ cookies });
+  const supabase = createClient();
   const origin = headers().get("origin");
 
   const { error, data } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/auth/callback`,
+      emailRedirectTo: `${origin}/auth/confirm`,
     },
   });
 
@@ -34,7 +35,7 @@ export const signUp = async (email: string, password: string) => {
 
 export const signInWithGithub = async () => {
   const origin = headers().get("origin");
-  const supabase = createServerActionClient({ cookies });
+  const supabase = createClient();
 
   const res = await supabase.auth.signInWithOAuth({
     provider: "github",
@@ -46,7 +47,7 @@ export const signInWithGithub = async () => {
 };
 
 export const signOut = async () => {
-  const supabase = createServerActionClient({ cookies });
+  const supabase = createClient();
   await supabase.auth.signOut();
   redirect("/");
 };
