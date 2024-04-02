@@ -1,14 +1,13 @@
-import { cookies } from "next/headers";
 import Link from "next/link";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { signOut } from "~/app/auth/actions";
+import { createClient } from "~/utils/supabase/server";
 
 export async function AuthShowcase() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createClient();
   const user = await supabase.auth.getUser();
 
-  if (!user.data.user) {
+  if (user.error ?? !user.data?.user) {
     return (
       <Link
         className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
