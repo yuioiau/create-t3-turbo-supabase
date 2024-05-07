@@ -13,7 +13,7 @@ export const env = createEnv({
 export default {
   schema: "./src/schema",
   schemaFilter: ["public"],
-  out: "./src/migrations",
+  out: "./migrations",
   driver: "pg",
   dbCredentials: { connectionString: env.POSTGRES_URL },
   tablesFilter: ["t3turbo_*"],
