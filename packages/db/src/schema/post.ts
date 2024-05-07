@@ -1,8 +1,10 @@
 import { relations, sql } from "drizzle-orm";
-import { pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
+import { timestamp, varchar } from "drizzle-orm/pg-core";
+
+import { createTable } from "./_table";
 import { profile } from "./profile";
 
-export const post = pgTable("post", {
+export const post = createTable("post", {
   id: varchar("id", { length: 256 }).primaryKey(),
   title: varchar("name", { length: 256 }).notNull(),
   content: varchar("content", { length: 256 }).notNull(),
@@ -17,4 +19,3 @@ export const post = pgTable("post", {
 export const postRelations = relations(post, ({ one }) => ({
   author: one(profile, { fields: [post.authorId], references: [profile.id] }),
 }));
-
