@@ -11,7 +11,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import { db } from "@acme/db";
+import { createDBClient } from "@acme/db/client";
 
 /**
  * 1. CONTEXT
@@ -44,7 +44,7 @@ export const createTRPCContext = async (opts: {
 
   return {
     user: user.data.user,
-    db,
+    db: createDBClient(),
   };
 };
 
