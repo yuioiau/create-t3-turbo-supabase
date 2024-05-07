@@ -15,31 +15,25 @@
     "dev": "tsc --watch",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint .",
+    "lint": "eslint",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@acme/db": "workspace:*",
     "@acme/validators": "workspace:*",
-    "@supabase/supabase-js": "^2.41.1",
-    "@trpc/server": "11.0.0-rc.329",
-    "nanoid": "^5.0.6",
+    "@supabase/supabase-js": "^2.43.1",
+    "@trpc/server": "11.0.0-rc.364",
+    "nanoid": "^5.0.7",
     "superjson": "2.2.1",
-    "zod": "^3.22.4"
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "eslint": "^8.57.0",
+    "eslint": "^9.2.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base"
-    ]
+    "typescript": "^5.4.5"
   },
   "prettier": "@acme/prettier-config"
 }
