@@ -53,7 +53,7 @@ language plpgsql
 security definer set search_path = public
 as $$
 begin
-  insert into public.tut_profile (id, email, name, image)
+  insert into public.t3turbo_profile (id, email, name, image)
   values (
     new.id,
     new.raw_user_meta_data ->> 'email',

@@ -3,6 +3,7 @@ import { timestamp, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+import { timestamps } from "../lib/utils";
 import { createTable } from "./_table";
 import { profile } from "./profile";
 
@@ -16,6 +17,9 @@ export const post = createTable("post", {
   createdAt: timestamp("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const postRelations = relations(post, ({ one }) => ({
@@ -27,5 +31,5 @@ export const createPostSchema = createInsertSchema(post, {
   content: z.string().max(256),
 }).omit({
   id: true,
-  createdAt: true,
+  ...timestamps,
 });
