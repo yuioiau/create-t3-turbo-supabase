@@ -45,7 +45,7 @@ function PostCard(props: { post: RouterOutputs["post"]["all"][number] }) {
           <Pressable>
             <Image
               className="mr-2 h-10 w-10 self-center rounded-full"
-              source={post.author?.image ?? ""}
+              source={post.author.image ?? ""}
             />
             <View>
               <Text className="text-xl font-semibold text-emerald-400">
