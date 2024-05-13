@@ -1,14 +1,15 @@
+import "@bacons/text-decoder/install";
+
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import { useColorScheme } from "nativewind";
 
 import { HeaderBackButton, HeaderTitle } from "~/components/header";
 import { TRPCProvider } from "~/utils/api";
 import { supabase } from "~/utils/supabase";
 
 import "../styles.css";
-
-import { useColorScheme } from "nativewind";
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need

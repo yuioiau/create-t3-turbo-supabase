@@ -1,14 +1,5 @@
 import type { ConfigContext, ExpoConfig } from "@expo/config";
 
-if (
-  !process.env.EXPO_PUBLIC_SUPABASE_URL ||
-  !process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY
-) {
-  throw new Error(
-    "Please provide SUPABASE_URL and SUPABASE_ANON_KEY in your .env file",
-  );
-}
-
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: "expo",
