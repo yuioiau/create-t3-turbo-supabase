@@ -1,35 +1,37 @@
 import { relations, sql } from "drizzle-orm";
-import { timestamp, varchar } from "drizzle-orm/pg-core";
+import { text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { timestamps } from "../lib/utils";
 import { createTable } from "./_table";
-import { profile } from "./profile";
+import { Profile } from "./profile";
 
-export const post = createTable("post", {
-  id: varchar("id", { length: 256 }).primaryKey(),
+export const Post = createTable("post", {
+  id: uuid("id").primaryKey().defaultRandom(),
   title: varchar("name", { length: 256 }).notNull(),
-  content: varchar("content", { length: 256 }).notNull(),
-  authorId: varchar("author_id", { length: 256 })
+  content: text("content").notNull(),
+  authorId: uuid("author_id")
     .notNull()
-    .references(() => profile.id),
+    .references(() => Profile.id),
   createdAt: timestamp("created_at")
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`now()`)
     .notNull(),
-  updatedAt: timestamp("updated_at")
-    .notNull()
-    .default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: timestamp("updatedAt", {
+    mode: "date",
+    withTimezone: true,
+  }).$onUpdateFn(() => sql`now()`),
 });
 
-export const postRelations = relations(post, ({ one }) => ({
-  author: one(profile, { fields: [post.authorId], references: [profile.id] }),
+export const PostRelations = relations(Post, ({ one }) => ({
+  author: one(Profile, { fields: [Post.authorId], references: [Profile.id] }),
 }));
 
-export const createPostSchema = createInsertSchema(post, {
+export const CreatePostSchema = createInsertSchema(Post, {
   title: z.string().max(256),
   content: z.string().max(256),
 }).omit({
   id: true,
+  authorId: true,
   ...timestamps,
 });

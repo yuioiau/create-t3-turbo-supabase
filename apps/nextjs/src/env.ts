@@ -15,14 +15,14 @@ export const env = createEnv({
    * built with invalid env vars.
    */
   server: {
-    POSTGRES_URL: z.string().min(1),
+    POSTGRES_URL: z.string().url(),
   },
   /**
    * Specify your client-side environment variables schema here.
    * For them to be exposed to the client, prefix them with `NEXT_PUBLIC_`.
    */
   client: {
-    NEXT_PUBLIC_SUPABASE_URL: z.string().min(1),
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
   },
   /**

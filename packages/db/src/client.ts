@@ -7,12 +7,11 @@ import * as schema from "./schema";
 
 export const env = createEnv({
   server: {
-    POSTGRES_URL: z.string(),
+    POSTGRES_URL: z.string().url(),
   },
+  // eslint-disable-next-line no-restricted-properties
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
 });
 
-export const createDBClient = () => {
-  return drizzle(sql, { schema });
-};
+export const db = drizzle(sql, { schema });

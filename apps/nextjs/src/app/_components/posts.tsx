@@ -118,8 +118,8 @@ export function PostCard(props: {
     <div className="flex flex-row rounded-lg bg-white/10 p-4 transition-all hover:scale-[101%]">
       <Image
         className="mr-2 self-center rounded"
-        src={post.author?.image ?? ""}
-        alt={`${post.author?.name}'s avatar`}
+        src={post.author.image ?? ""}
+        alt={`${post.author.name}'s avatar`}
         width={64}
         height={64}
       />

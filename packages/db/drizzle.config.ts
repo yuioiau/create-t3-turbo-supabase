@@ -6,7 +6,7 @@ export default {
   schema: "./src/schema",
   schemaFilter: ["public"],
   out: "./migrations",
-  driver: "pg",
-  dbCredentials: { connectionString: env.POSTGRES_URL },
+  dialect: "postgresql",
+  dbCredentials: { url: env.POSTGRES_URL },
   tablesFilter: ["t3turbo_*"],
 } satisfies Config;
