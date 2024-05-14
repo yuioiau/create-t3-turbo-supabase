@@ -17,7 +17,12 @@ export const protectedRoutes = ["/dashboard"];
  * Logged in users will be redirected to DEFAULT_LOGIN_REDIRECT when accessing these routes.
  * @type {string[]} authRoutes - The authentication routes.
  */
-export const authRoutes = ["/auth/login", "/auth/callback", "/auth/confirm"];
+export const authRoutes = [
+  "/auth/signin",
+  "/auth/signup",
+  "/auth/callback",
+  "/auth/confirm",
+];
 
 /**
  * The default path to which users are redirected after logging in.
