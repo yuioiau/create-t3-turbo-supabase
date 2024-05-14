@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@acme/ui/button";
 
 import { SignOutButton } from "~/app/auth/_components/sign-out-button";
+import { DEFAULT_AUTH_ROUTE } from "~/config/routes";
 import { createClient } from "~/utils/supabase/server";
 
 export async function AuthShowcase() {
@@ -12,7 +13,7 @@ export async function AuthShowcase() {
   if (user.error ?? !user.data.user) {
     return (
       <Button asChild size="lg">
-        <Link href="/auth/signin">Sign in</Link>
+        <Link href={DEFAULT_AUTH_ROUTE}>Sign in</Link>
       </Button>
     );
   }

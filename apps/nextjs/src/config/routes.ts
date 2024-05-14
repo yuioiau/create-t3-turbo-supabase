@@ -28,4 +28,10 @@ export const authRoutes = [
  * The default path to which users are redirected after logging in.
  * @type {string} DEFAULT_LOGIN_REDIRECT - The default login redirect path.
  */
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+export const DEFAULT_LOGIN_REDIRECT = "/";
+
+/**
+ * The default path to which users are redirected to authenticate.
+ * @type {string} DEFAULT_AUTH_ROUTE - The default auth route.
+ */
+export const DEFAULT_AUTH_ROUTE = "/auth/signin";

@@ -30,8 +30,6 @@ export const SignInForm = () => {
 
   const { execute, result, status } = useAction(signInWithPassword);
 
-  console.log(result);
-
   const onSubmit = (values: SignIn) => {
     execute(values);
   };

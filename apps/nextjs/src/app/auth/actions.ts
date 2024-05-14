@@ -1,10 +1,12 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { SignInSchema, SignUpSchema } from "@acme/validators";
 
+import { DEFAULT_LOGIN_REDIRECT } from "~/config/routes";
 import { action } from "~/lib/safe-action";
 import { createClient } from "~/utils/supabase/server";
 
@@ -13,27 +15,36 @@ export const signInWithPassword = action(
   async ({ email, password }) => {
     const supabase = createClient();
 
-    const { error, data } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) throw error;
-    return data.user;
+
+    revalidatePath("/", "layout");
+    redirect(DEFAULT_LOGIN_REDIRECT);
   },
 );
 
 export const signUp = action(SignUpSchema, async ({ email, password }) => {
-  const supabase = createClient();
   const origin = headers().get("origin");
+  const supabase = createClient();
+
+  const redirectUrl = `${origin}/auth/confirm?next=${encodeURIComponent(DEFAULT_LOGIN_REDIRECT)}`;
 
   const { error, data } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/auth/confirm`,
+      emailRedirectTo: redirectUrl,
     },
   });
+
+  // User already exists, so fake data is returned. See https://supabase.com/docs/reference/javascript/auth-signup
+  if (data.user?.identities && data.user.identities.length === 0) {
+    throw new Error("An error occurred. Please try again.");
+  }
 
   if (error) throw error;
   return data.user;
@@ -43,9 +54,11 @@ export const signInWithGithub = async () => {
   const origin = headers().get("origin");
   const supabase = createClient();
 
+  const redirectUrl = `${origin}/auth/callback?next=${encodeURIComponent(DEFAULT_LOGIN_REDIRECT)}`;
+
   const res = await supabase.auth.signInWithOAuth({
     provider: "github",
-    options: { redirectTo: `${origin}/auth/callback` },
+    options: { redirectTo: redirectUrl },
   });
 
   if (res.data.url) redirect(res.data.url);
