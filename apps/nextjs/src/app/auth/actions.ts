@@ -3,21 +3,27 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { SignInSchema, SignUpSchema } from "@acme/validators";
+
+import { action } from "~/lib/safe-action";
 import { createClient } from "~/utils/supabase/server";
 
-export const signInWithPassword = async (email: string, password: string) => {
-  const supabase = createClient();
+export const signInWithPassword = action(
+  SignInSchema,
+  async ({ email, password }) => {
+    const supabase = createClient();
 
-  const { error, data } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+    const { error, data } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-  if (error) throw error;
-  return data.user;
-};
+    if (error) throw error;
+    return data.user;
+  },
+);
 
-export const signUp = async (email: string, password: string) => {
+export const signUp = action(SignUpSchema, async ({ email, password }) => {
   const supabase = createClient();
   const origin = headers().get("origin");
 
@@ -31,7 +37,7 @@ export const signUp = async (email: string, password: string) => {
 
   if (error) throw error;
   return data.user;
-};
+});
 
 export const signInWithGithub = async () => {
   const origin = headers().get("origin");

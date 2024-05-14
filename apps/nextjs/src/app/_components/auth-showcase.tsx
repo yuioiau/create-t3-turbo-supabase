@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-import { signOut } from "~/app/auth/actions";
+import { Button } from "@acme/ui/button";
+
+import { SignOutButton } from "~/app/auth/_components/sign-out-button";
 import { createClient } from "~/utils/supabase/server";
 
 export async function AuthShowcase() {
@@ -9,26 +11,19 @@ export async function AuthShowcase() {
 
   if (user.error ?? !user.data.user) {
     return (
-      <Link
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-        href="/auth/login"
-      >
-        Sign in
-      </Link>
+      <Button asChild size="lg">
+        <Link href="/auth/signin">Sign in</Link>
+      </Button>
     );
   }
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
+      <p className="text-center text-2xl">
         <span>Logged in as {user.data.user.email}</span>
       </p>
 
-      <form action={signOut}>
-        <button className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20">
-          Sign out
-        </button>
-      </form>
+      <SignOutButton />
     </div>
   );
 }
