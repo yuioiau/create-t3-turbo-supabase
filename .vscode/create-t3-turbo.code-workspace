@@ -24,6 +24,11 @@
   "extensions": {
     "recommendations": ["joshx.workspace-terminals"],
   },
+  "settings": {
+    "search.useIgnoreFiles": true,
+    // use root .gitignore to ignore files from search
+    "search.useParentIgnoreFiles": true,
+  },
   "launch": {
     "version": "0.2.0",
     "configurations": [],

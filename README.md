@@ -31,7 +31,7 @@ cp .env.example .env
 # Push the Drizzle schema to your database (w/ drizzle-kit push)
 pnpm db:push
 
-# Or use migrations (w/ drizzle-kit generate and the migrate script)
+# Or use migrations (w/ drizzle-kit generate and drizzle-kit migrate)
 pnpm db:generate
 pnpm db:migrate
 ```
@@ -43,7 +43,8 @@ pnpm db:migrate
 1. Go to [the Supabase dashboard](https://app.supabase.com/projects) and create a new project.
 2. Under project settings, retrieve the environment variables `reference id`, `project url` & `anon public key` and paste them into [.env](./.env.example) and [apps/expo/.env](./apps/expo/.env.example) in the necessary places. You'll also need the database password you set when creating the project.
 3. Under `Auth`, configure any auth provider(s) of your choice. This repo is using Github for Web and Apple for Mobile.
-4. Setup a trigger when a new user signs up: <https://supabase.com/docs/guides/auth/managing-user-data#using-triggers>. Can run this in the SQL Editor.
+4. Under `Auth` -> `URL Configuration`, set the `Site URL` to your production URL and add `http://localhost:3000/**` and `https://*-username.vercel.app/**` to `Redirect URLs` as detailed here <https://supabase.com/docs/guides/auth/redirect-urls#vercel-preview-urls>.
+5. Setup a trigger when a new user signs up: <https://supabase.com/docs/guides/auth/managing-user-data#using-triggers>. Can run this in the SQL Editor.
 
 ```sql
 -- inserts a row into public.profile
@@ -75,7 +76,7 @@ create trigger on_auth_user_created
   for each row execute procedure public.handle_new_user();
 ```
 
-5. Remove access to the `public` schema as we are only using the server
+6. Remove access to the `public` schema as we are only using the server
 
 By default, Supabase exposes the `public` schema to the PostgREST API to allow the `supabase-js` client query the database directly from the client. However, since we route all our requests through the Next.js application (through tRPC), we don't want our client to have this access. To disable this, execute the following SQL query in the SQL Editor on your Supabase dashboard:
 
