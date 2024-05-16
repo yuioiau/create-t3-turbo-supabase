@@ -26,6 +26,7 @@ pnpm i
 
 # Configure environment variables.
 # There is an `.env.example` in the root directory you can use for reference
+# Ensure that the POSTGRES_URL is in the same format as in the example
 cp .env.example .env
 
 # Push the Drizzle schema to your database (w/ drizzle-kit push)
@@ -36,7 +37,7 @@ pnpm db:generate
 pnpm db:migrate
 ```
 
-> Migrations seem preferable for Supabase. Still figuring out the best way to do migrations for local development/branching. <https://twitter.com/plushdohn/status/1780126181490135371>
+> **NOTE:** Migrations seem preferable for Supabase. Still figuring out the best way to do migrations for local development/branching. <https://twitter.com/plushdohn/status/1780126181490135371>
 
 ### Setting up Supabase
 
