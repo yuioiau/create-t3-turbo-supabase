@@ -8,13 +8,20 @@ import { buttonVariants } from "@acme/ui/button";
 import { CardWrapper } from "~/app/auth/_components/card-wrapper";
 import { SignInForm } from "~/app/auth/_components/sign-in-form";
 
+import { createClient } from "~/utils/supabase/server";
+import { redirect } from 'next/navigation';
+
 export const metadata: Metadata = {
   title: "Sign In",
   description: "Sign In to Notes Buddy",
 };
 
 export default async function SignInPage() {
-  // todo: redirect if logged in
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+
+  if (!user.error ?? user.data.user) redirect('/dashboard')
+
   return (
     <>
       <div className="container relative grid min-h-[100dvh] flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
