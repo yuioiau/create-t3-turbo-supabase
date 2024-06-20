@@ -44,6 +44,7 @@ export default async function DashboardLayout({
         defaultLayout={defaultLayout}
         defaultCollapsed={defaultCollapsed}
         navCollapsedSize={4}
+        user={user}
       >
         {children}
       </Layout>

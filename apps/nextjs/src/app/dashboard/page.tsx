@@ -25,7 +25,7 @@ export default function HomePage() {
   const posts = api.post.all();
 
   return (
-    <div className="flex-1 space-y-4 border-t p-4 pt-2 md:p-6 md:pt-4 lg:p-8 lg:pt-6">
+    <div className="flex-1 space-y-4 p-4 pt-2 md:p-6 md:pt-4 lg:p-8 lg:pt-6">
       <div className="flex items-center justify-between">
         <Breadcrumb>
           <BreadcrumbList>

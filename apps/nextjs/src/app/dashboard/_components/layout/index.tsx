@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { UserResponse } from "@supabase/supabase-js";
 import { Flag, Home, Search, Trash2 } from "lucide-react";
 
 import { cn } from "@acme/ui";
@@ -15,9 +16,11 @@ import { TooltipProvider } from "@acme/ui/tooltip";
 
 import { Logo } from "~/app/dashboard/_components/layout/logo";
 import { Nav } from "~/app/dashboard/_components/layout/nav";
+import UserAvatar from "../user-avatar";
 
 interface LayoutProps {
   children: React.ReactNode;
+  user: UserResponse;
   defaultLayout: number[] | undefined;
   defaultCollapsed?: boolean;
   navCollapsedSize: number;
@@ -25,6 +28,7 @@ interface LayoutProps {
 
 export function Layout({
   children,
+  user,
   defaultLayout = [265, 1095],
   defaultCollapsed = false,
   navCollapsedSize,
@@ -96,18 +100,26 @@ export function Layout({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-          <div className={cn("flex h-[52px] items-center px-4 py-2")}>
-            <h1 className="text-xl font-bold">Inbox</h1>
+          <div
+            className={cn(
+              "flex h-[52px] items-center justify-between px-4 py-2",
+            )}
+          >
+            <div className="w-full flex-1">
+              <form>
+                <div className="relative">
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    placeholder="Search..."
+                    className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+                  />
+                </div>
+              </form>
+            </div>
+            <UserAvatar user={user} />
           </div>
           <Separator />
-          <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <form>
-              <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search" className="pl-8" />
-              </div>
-            </form>
-          </div>
           {children}
         </ResizablePanel>
       </ResizablePanelGroup>
