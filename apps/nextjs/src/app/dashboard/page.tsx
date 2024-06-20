@@ -18,6 +18,8 @@ import {
   PostList,
 } from "./_components/posts";
 
+import { ScrollArea } from "@acme/ui/scroll-area"
+
 export const runtime = "edge";
 
 export default function HomePage() {
@@ -44,10 +46,11 @@ export default function HomePage() {
             </BreadcrumbItem> */}
           </BreadcrumbList>
         </Breadcrumb>
-        {/* <CreatePostForm /> */}
       </div>
 
-      <div className="w-full overflow-y-scroll">
+      <CreatePostForm />
+
+      <ScrollArea className="w-full overflow-y-auto">
         <Suspense
           fallback={
             <div className="flex w-full flex-col gap-4">
@@ -59,7 +62,7 @@ export default function HomePage() {
         >
           <PostList posts={posts} />
         </Suspense>
-      </div>
+      </ScrollArea>
     </div>
   );
 }
