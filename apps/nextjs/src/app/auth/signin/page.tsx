@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function SignInPage() {
+  // todo: redirect if logged in
   return (
     <>
       <div className="container relative grid min-h-[100dvh] flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
