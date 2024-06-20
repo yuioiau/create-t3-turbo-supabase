@@ -39,7 +39,6 @@ export default async function DashboardLayout({
   if (user.error ?? !user.data.user) redirect("/auth/signin");
 
   return (
-    <main className="flex-1 bg-muted/30">
       <Layout
         defaultLayout={defaultLayout}
         defaultCollapsed={defaultCollapsed}
@@ -48,6 +47,5 @@ export default async function DashboardLayout({
       >
         {children}
       </Layout>
-    </main>
   );
 }
