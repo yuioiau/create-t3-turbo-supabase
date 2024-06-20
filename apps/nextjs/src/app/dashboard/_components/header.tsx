@@ -1,12 +1,15 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { BlocksIcon, MenuIcon, XIcon } from 'lucide-react';
-import { ThemeToggle as ModeToggle } from '@acme/ui/theme';
-import UserAvatar from './user-avatar';
-import { cn } from '@acme/ui';
-import { UserResponse } from '@supabase/supabase-js';
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { UserResponse } from "@supabase/supabase-js";
+import { motion } from "framer-motion";
+import { MenuIcon, NotebookTextIcon, XIcon } from "lucide-react";
+
+import { cn } from "@acme/ui";
+import { ThemeToggle as ModeToggle } from "@acme/ui/theme";
+
+import UserAvatar from "./user-avatar";
 
 interface HeaderProps {
   user: UserResponse;
@@ -27,38 +30,38 @@ function Header({ user }: HeaderProps) {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // TODO: In mobile (the nav menu is opacity 0 so it's clickable and makes other things not clickable and stuff)
   const menuVariants = {
     open: {
-      height: 'auto',
+      height: "auto",
       opacity: 1,
       transition: {
-        height: { duration: 0.3, ease: 'easeInOut' },
-        opacity: { duration: 0.5, ease: 'easeInOut' }
-      }
+        height: { duration: 0.3, ease: "easeInOut" },
+        opacity: { duration: 0.5, ease: "easeInOut" },
+      },
     },
     initial: {
       height: 0,
       opacity: 0,
       transition: {
-        height: { duration: 0.3, ease: 'easeInOut' },
-        opacity: { duration: 0.25, ease: 'easeInOut' }
-      }
+        height: { duration: 0.3, ease: "easeInOut" },
+        opacity: { duration: 0.25, ease: "easeInOut" },
+      },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        height: { duration: 0.3, ease: 'easeInOut' },
-        opacity: { duration: 0.25, ease: 'easeInOut' },
-        display: { duration: 0.3, ease: 'easeInOut' }
-      }
-    }
+        height: { duration: 0.3, ease: "easeInOut" },
+        opacity: { duration: 0.25, ease: "easeInOut" },
+        display: { duration: 0.3, ease: "easeInOut" },
+      },
+    },
   };
 
   return (
@@ -66,7 +69,7 @@ function Header({ user }: HeaderProps) {
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <div className="flex w-full justify-between">
           <Link href="/dashboard" className="flex items-center justify-center">
-            <BlocksIcon className="h-6 w-6" />
+            <NotebookTextIcon className="h-6 w-6" />
             <span className="sr-only">Notes Buddy</span>
           </Link>
 
@@ -74,7 +77,7 @@ function Header({ user }: HeaderProps) {
             className="flex flex-row space-x-2 md:hidden"
             onClick={toggleMenu}
           >
-            <span className="lowercase">{isOpen ? 'Close' : 'Menu'}</span>
+            <span className="lowercase">{isOpen ? "Close" : "Menu"}</span>
             {isOpen ? (
               <XIcon className="h-6 w-6" />
             ) : (
@@ -92,33 +95,13 @@ function Header({ user }: HeaderProps) {
       <motion.div
         variants={menuVariants}
         initial="closed"
-        animate={isOpen ? 'open' : 'closed'}
-        className={cn('bg-transparent md:hidden')}
+        animate={isOpen ? "open" : "closed"}
+        className={cn("bg-transparent md:hidden")}
       >
         <div className="flex flex-col gap-4 p-4">
-          {/* <Link
-            className="flex items-center text-sm font-medium underline-offset-4 hover:underline"
-            href="/about"
-            onClick={toggleMenu}
-          >
-            About
-          </Link> */}
-          <Link
-            className="flex items-center text-sm font-medium underline-offset-4 hover:underline"
-            href="#features"
-            onClick={toggleMenu}
-          >
-            Features
-          </Link>
-          <Link
-            className="flex items-center text-sm font-medium underline-offset-4 hover:underline"
-            href="#faq"
-            onClick={toggleMenu}
-          >
-            FAQ
-          </Link>
-          <div className="flex w-full items-center justify-end">
+          <div className="flex w-full items-center justify-between">
             <ModeToggle />
+            <UserAvatar user={user} />
           </div>
         </div>
       </motion.div>
