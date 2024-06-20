@@ -23,7 +23,11 @@ function ThemeToggle({ size }: ThemeToggleProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className={size === "sm" ? 'h-8 w-8' : ''}>
+        <Button
+          variant="outline"
+          size="icon"
+          className={size === "sm" ? "h-8 w-8" : ""}
+        >
           <SunIcon
             className={cn(
               "size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
