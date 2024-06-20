@@ -50,7 +50,7 @@ export default function HomePage() {
 
       <CreatePostForm />
 
-      <ScrollArea className="w-full overflow-y-auto">
+      <ScrollArea className="w-full overflow-y-auto h-[65dvh]">
         <Suspense
           fallback={
             <div className="flex w-full flex-col gap-4">
