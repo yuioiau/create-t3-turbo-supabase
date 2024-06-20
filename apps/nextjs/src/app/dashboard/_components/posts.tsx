@@ -58,7 +58,7 @@ export function CreatePostForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Title" className="bg-background" />
+                <Input {...field} placeholder="Title" className="bg-background" required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,7 +70,7 @@ export function CreatePostForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Content"  className="bg-background" />
+                <Input {...field} placeholder="Content"  className="bg-background" required />
               </FormControl>
               <FormMessage />
             </FormItem>
