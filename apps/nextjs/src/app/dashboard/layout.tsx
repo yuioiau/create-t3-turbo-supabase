@@ -1,45 +1,52 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-import Header from '~/app/dashboard/_components/header';
-import { redirect } from 'next/navigation';
-import { cn } from '@acme/ui';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { createClient } from "~/utils/supabase/server";
+import { Layout } from "./_components/layout";
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter'
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dashboard - Notes Buddy',
-    template: `%s - Dashboard - Notes Buddy`
+    default: "Dashboard - Notes Buddy",
+    template: `%s - Dashboard - Notes Buddy`,
   },
-  description: 'Notes Buddy: A powerful notes sharing website.'
+  description: "Notes Buddy: A powerful notes sharing website.",
 };
 
 export default async function DashboardLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
-  
-  if (user.error ?? !user.data.user) redirect('/auth/signin');
+
+  const layout = cookies().get("react-resizable-panels:layout");
+  const collapsed = cookies().get("react-resizable-panels:collapsed");
+
+  const defaultLayout =
+    (layout ? JSON.parse(layout.value) : undefined) ?? false;
+  const defaultCollapsed =
+    (collapsed ? JSON.parse(collapsed.value) : undefined) ?? false;
+
+  if (user.error ?? !user.data.user) redirect("/auth/signin");
 
   return (
-    <div
-      className={cn(
-        'flex min-h-[100dvh] flex-col font-dashboard',
-        inter.variable
-      )}
-    >
-      <Header user={user} />
-      <main className="mt-16 flex-1 bg-muted/30">{children}</main>
-    </div>
+    <main className="flex-1 bg-muted/30">
+      <Layout
+        defaultLayout={defaultLayout}
+        defaultCollapsed={defaultCollapsed}
+        navCollapsedSize={4}
+      >
+        {children}
+      </Layout>
+    </main>
   );
 }
