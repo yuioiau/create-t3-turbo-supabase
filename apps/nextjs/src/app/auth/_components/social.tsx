@@ -1,7 +1,5 @@
 import { Github } from "lucide-react";
-
 import { Button } from "@acme/ui/button";
-
 import { signInWithGithub } from "~/app/auth/actions";
 
 export const Social = () => {

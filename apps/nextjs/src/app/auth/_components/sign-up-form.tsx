@@ -20,6 +20,8 @@ import { FormError } from "~/app/auth/_components/form-error";
 import { FormSuccess } from "~/app/auth/_components/form-success";
 import { signUp } from "~/app/auth/actions";
 
+import { LoaderCircleIcon } from "lucide-react";
+
 export const SignUpForm = () => {
   const form = useForm({
     schema: SignUpSchema,
@@ -88,6 +90,7 @@ export const SignUpForm = () => {
           type="submit"
           className="w-full"
         >
+          {status === "executing" && <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin" />}
           Continue with Email
         </Button>
       </form>

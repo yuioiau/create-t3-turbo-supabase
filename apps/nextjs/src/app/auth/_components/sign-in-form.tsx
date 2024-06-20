@@ -19,6 +19,8 @@ import { SignInSchema } from "@acme/validators";
 import { FormError } from "~/app/auth/_components/form-error";
 import { signInWithPassword } from "~/app/auth/actions";
 
+import { LoaderCircleIcon } from "lucide-react";
+
 export const SignInForm = () => {
   const form = useForm({
     schema: SignInSchema,
@@ -84,6 +86,7 @@ export const SignInForm = () => {
           type="submit"
           className="w-full"
         >
+          {status === "executing" && <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin" />}
           Continue with Email
         </Button>
       </form>

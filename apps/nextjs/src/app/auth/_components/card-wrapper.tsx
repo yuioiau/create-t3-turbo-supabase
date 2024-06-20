@@ -1,3 +1,4 @@
+import { cn } from "@acme/ui";
 import { Card, CardContent, CardFooter, CardHeader } from "@acme/ui/card";
 
 import { BackButton } from "~/app/auth/_components/back-button";
@@ -6,52 +7,48 @@ import { Social } from "~/app/auth/_components/social";
 
 interface CardWrapperProps {
   children: React.ReactNode;
-  headerLabel: string;
   backButtonLabel: string;
   backButtonLinkLabel: string;
   backButtonHref: string;
   showSocial?: boolean;
   showCredentials?: boolean;
+  className?: string;
 }
 
 export const CardWrapper = ({
   children,
-  headerLabel,
   backButtonLabel,
   backButtonLinkLabel,
   backButtonHref,
   showSocial,
   showCredentials,
+  className,
 }: CardWrapperProps) => {
   return (
-    <Card className="w-[400px] p-4 shadow-md">
-      <CardHeader>
-        <Header label={headerLabel} />
-      </CardHeader>
-
-      {showSocial && (
-        <CardFooter>
-          <Social />
-        </CardFooter>
-      )}
-
+    <div className={cn("grid gap-6", className)}>
       {showCredentials && (
         <>
-          <div className="flex items-center justify-center px-6 pb-4 pt-0">
-            <div className="flex-grow border-t border-muted-foreground" />
-            <span className="px-3 text-muted-foreground">or</span>
-            <div className="flex-grow border-t border-muted-foreground" />
+          <div>{children}</div>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">
+                Or continue with
+              </span>
+            </div>
           </div>
-          <CardContent>{children}</CardContent>
         </>
       )}
-      <CardFooter>
-        <BackButton
-          label={backButtonLabel}
-          linkLabel={backButtonLinkLabel}
-          href={backButtonHref}
-        />
-      </CardFooter>
-    </Card>
+
+      {showSocial && <Social />}
+
+      <BackButton
+        label={backButtonLabel}
+        linkLabel={backButtonLinkLabel}
+        href={backButtonHref}
+      />
+    </div>
   );
 };
