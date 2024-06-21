@@ -122,7 +122,7 @@ export function Layout({
             links={NAV_LINKS}
           />
         </ResizablePanel>
-        <ResizableHandle withHandle className="hidden sm:block" />
+        <ResizableHandle withHandle className="hidden sm:flex" />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
           <div className="flex h-full flex-col">
             <header
