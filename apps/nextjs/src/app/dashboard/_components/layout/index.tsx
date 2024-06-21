@@ -14,7 +14,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@acme/ui/breadcrumb";
-import { Button } from "@acme/ui/button";
+import { Button, buttonVariants } from "@acme/ui/button";
 
 import { Input } from "@acme/ui/input";
 import {
@@ -128,34 +128,49 @@ export function Layout({
                     <span className="sr-only">Toggle Menu</span>
                   </Button>
                 </SheetTrigger>
+                {/* todo: make this and nav a combined list to loop through */}
                 <SheetContent side="left" className="sm:max-w-xs">
-                  <nav className="grid gap-6 text-lg font-medium">
+                  <nav className="grid gap-1 text-lg font-medium">
                     <Link
                       href="/dashboard"
-                      className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                      className="mb-2 group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                     >
                       <NotebookTextIcon className="h-5 w-5 transition-all group-hover:scale-110" />
                       <span className="sr-only">Notes Buddy</span>
                     </Link>
+                   
                     <Link
                       href="#"
-                      className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                      className={cn(
+                        buttonVariants({ variant: "default", size: "sm" }),
+                        
+                          "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                        "justify-start"
+                      )}
                     >
-                      <Home className="h-5 w-5" />
+                      <Home className="mr-2 h-5 w-5" />
                       Dashboard
                     </Link>
                     <Link
                       href="#"
-                      className="flex items-center gap-4 px-2.5 text-foreground"
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "sm" }),
+                          "justify-start"
+                          
+                      )}
                     >
-                      <Trash2 className="h-5 w-5" />
+                      <Trash2 className="mr-2 h-5 w-5" />
                       Trash
                     </Link>
                     <Link
                       href="#"
-                      className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "sm" }),
+                        
+                       "justify-start"
+                      )}
                     >
-                      <Flag className="h-5 w-5" />
+                      <Flag className="mr-2 h-5 w-5" />
                       Reported
                     </Link>
                   </nav>
