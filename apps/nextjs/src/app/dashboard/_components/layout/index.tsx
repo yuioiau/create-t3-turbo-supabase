@@ -115,7 +115,7 @@ export function Layout({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <header
               className={cn(
                 "sticky top-0 z-30 flex h-[52px] items-center gap-4 px-4 sm:static sm:border-0 sm:bg-transparent sm:px-6",
