@@ -207,7 +207,8 @@ export function Layout({
               <UserAvatar user={user} />
             </header>
             <Separator />
-            <main className="flex-1 bg-muted/30">{children}</main>
+            {/* 54px is the height of the header */}
+            <main className="flex-1 bg-muted/30 max-h-[calc(100vh-54px)] overflow-auto">{children}</main>
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
