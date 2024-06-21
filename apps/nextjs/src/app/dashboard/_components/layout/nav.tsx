@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@acme/ui/tooltip"
 
-interface NavProps {
+export interface NavProps {
   isCollapsed: boolean
   links: {
     title: string

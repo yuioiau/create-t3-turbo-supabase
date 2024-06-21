@@ -33,7 +33,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@acme/ui/sheet";
 import { TooltipProvider } from "@acme/ui/tooltip";
 
 import { Logo } from "~/app/dashboard/_components/layout/logo";
-import { Nav } from "~/app/dashboard/_components/layout/nav";
+import { Nav, NavProps } from "~/app/dashboard/_components/layout/nav";
 import UserAvatar from "../user-avatar";
 
 interface LayoutProps {
@@ -44,7 +44,7 @@ interface LayoutProps {
   navCollapsedSize: number;
 }
 
-const NAV_LINKS = [
+const NAV_LINKS: NavProps['links'] = [
   {
     title: "Home",
     label: "",
