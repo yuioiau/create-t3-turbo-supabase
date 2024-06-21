@@ -1,9 +1,16 @@
 "use client";
 
 import * as React from "react";
-
+import Link from "next/link";
 import { UserResponse } from "@supabase/supabase-js";
-import { Flag, Home, NotebookTextIcon, PanelLeft, Search, Trash2 } from "lucide-react";
+import {
+  Flag,
+  Home,
+  NotebookTextIcon,
+  PanelLeft,
+  Search,
+  Trash2,
+} from "lucide-react";
 
 import { cn } from "@acme/ui";
 import {
@@ -15,7 +22,6 @@ import {
   BreadcrumbSeparator,
 } from "@acme/ui/breadcrumb";
 import { Button, buttonVariants } from "@acme/ui/button";
-
 import { Input } from "@acme/ui/input";
 import {
   ResizableHandle,
@@ -30,8 +36,6 @@ import { Logo } from "~/app/dashboard/_components/layout/logo";
 import { Nav } from "~/app/dashboard/_components/layout/nav";
 import UserAvatar from "../user-avatar";
 
-import Link from "next/link";
-
 interface LayoutProps {
   children: React.ReactNode;
   user: UserResponse;
@@ -39,6 +43,30 @@ interface LayoutProps {
   defaultCollapsed?: boolean;
   navCollapsedSize: number;
 }
+
+const NAV_LINKS = [
+  {
+    title: "Home",
+    label: "",
+    href: "/dashboard",
+    icon: Home,
+    variant: "default",
+  },
+  {
+    title: "Trash",
+    label: "",
+    href: "/dashboard",
+    icon: Trash2,
+    variant: "ghost",
+  },
+  {
+    title: "Reported",
+    label: "",
+    href: "/dashboard",
+    icon: Flag,
+    variant: "ghost",
+  },
+]
 
 export function Layout({
   children,
@@ -91,31 +119,12 @@ export function Layout({
           <Separator />
           <Nav
             isCollapsed={isCollapsed}
-            links={[
-              {
-                title: "Home",
-                label: "",
-                icon: Home,
-                variant: "default",
-              },
-              {
-                title: "Trash",
-                label: "",
-                icon: Trash2,
-                variant: "ghost",
-              },
-              {
-                title: "Reported",
-                label: "",
-                icon: Flag,
-                variant: "ghost",
-              },
-            ]}
+            links={NAV_LINKS}
           />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-          <div className="flex flex-col h-full">
+          <div className="flex h-full flex-col">
             <header
               className={cn(
                 "sticky top-0 z-30 flex h-[52px] items-center gap-4 px-4 sm:static sm:border-0 sm:bg-transparent sm:px-6",
@@ -133,46 +142,17 @@ export function Layout({
                   <nav className="grid gap-1 text-lg font-medium">
                     <Link
                       href="/dashboard"
-                      className="mb-2 group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                      className="group mb-2 flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                     >
                       <NotebookTextIcon className="h-5 w-5 transition-all group-hover:scale-110" />
                       <span className="sr-only">Notes Buddy</span>
                     </Link>
-                   
-                    <Link
-                      href="#"
-                      className={cn(
-                        buttonVariants({ variant: "default", size: "sm" }),
-                        
-                          "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-                        "justify-start"
-                      )}
-                    >
-                      <Home className="mr-2 h-5 w-5" />
-                      Dashboard
-                    </Link>
-                    <Link
-                      href="#"
-                      className={cn(
-                        buttonVariants({ variant: "ghost", size: "sm" }),
-                          "justify-start"
-                          
-                      )}
-                    >
-                      <Trash2 className="mr-2 h-5 w-5" />
-                      Trash
-                    </Link>
-                    <Link
-                      href="#"
-                      className={cn(
-                        buttonVariants({ variant: "ghost", size: "sm" }),
-                        
-                       "justify-start"
-                      )}
-                    >
-                      <Flag className="mr-2 h-5 w-5" />
-                      Reported
-                    </Link>
+                    <div className="-ml-2">
+                      <Nav
+                        isCollapsed={false}
+                        links={NAV_LINKS}
+                      />
+                    </div>
                   </nav>
                 </SheetContent>
               </Sheet>
@@ -208,7 +188,9 @@ export function Layout({
             </header>
             <Separator />
             {/* 54px is the height of the header */}
-            <main className="flex-1 bg-muted/30 max-h-[calc(100vh-54px)] overflow-auto">{children}</main>
+            <main className="max-h-[calc(100vh-54px)] flex-1 overflow-auto bg-muted/30">
+              {children}
+            </main>
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>

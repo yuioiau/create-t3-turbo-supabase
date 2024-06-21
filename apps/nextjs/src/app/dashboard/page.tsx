@@ -28,26 +28,6 @@ export default function HomePage() {
 
   return (
     <div className="flex-1 space-y-4 p-4 pt-2 md:p-6 md:pt-4 lg:p-8 lg:pt-6">
-      <div className="flex items-center justify-between">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/dashboard">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            {/* <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/docs/components">
-                Components
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-            </BreadcrumbItem> */}
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
-
       <CreatePostForm />
 
       <ScrollArea className="w-full overflow-y-auto h-[65dvh]">
