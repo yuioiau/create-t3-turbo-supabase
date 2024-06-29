@@ -58,7 +58,7 @@ function Header() {
         <div className="flex w-full justify-between">
           <Link href="/" className="flex items-center justify-center">
             <NotebookTextIcon className="h-6 w-6" />
-            <span className="sr-only">Notes Buddy</span>
+            <span className="sr-only">Posts Buddy</span>
           </Link>
 
           <button className="md:hidden" onClick={toggleMenu}>

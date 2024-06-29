@@ -11,7 +11,7 @@ import { SignUpForm } from "~/app/auth/_components/sign-up-form";
 
 export const metadata: Metadata = {
   title: 'Sign Up',
-  description: 'Sign Up to Notes Buddy'
+  description: 'Sign Up to Posts Buddy'
 };
 
 export default async function SignUpPage() {
@@ -34,7 +34,7 @@ export default async function SignUpPage() {
             href="/"
           >
             <NotebookTextIcon className="mr-2 h-6 w-6" />
-            Notes Buddy
+            Posts Buddy
           </Link>
           <div className="relative z-20 mt-auto">
             {/* <blockquote className="space-y-2">

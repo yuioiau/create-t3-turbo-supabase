@@ -21,7 +21,7 @@ export default function Hero() {
           </div>
           <div className="flex flex-col items-start space-y-4">
             <p className="mx-auto max-w-[700px] text-gray-600 dark:text-gray-400 md:text-xl">
-              Notes Buddy makes it easy to upload and share your class notes
+              Posts Buddy makes it easy to upload and share your class notes
               instantly across all your devices.
             </p>
             <div className="space-x-4">

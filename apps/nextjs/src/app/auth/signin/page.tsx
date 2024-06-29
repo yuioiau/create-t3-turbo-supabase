@@ -13,7 +13,7 @@ import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Sign In",
-  description: "Sign In to Notes Buddy",
+  description: "Sign In to Posts Buddy",
 };
 
 export default async function SignInPage() {
@@ -41,7 +41,7 @@ export default async function SignInPage() {
             href="/"
           >
             <NotebookTextIcon className="mr-2 h-6 w-6" />
-            Notes Buddy
+            Posts Buddy
           </Link>
           <div className="relative z-20 mt-auto">
             {/* <blockquote className="space-y-2">

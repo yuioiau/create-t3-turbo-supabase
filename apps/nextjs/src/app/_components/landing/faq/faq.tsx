@@ -29,11 +29,11 @@ export default function FAQ() {
           <Accordion collapsible type="single">
             <AccordionItem value="question1">
               <AccordionTrigger className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-                What features are included in Notes Buddy?
+                What features are included in Posts Buddy?
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Notes Buddy includes a variety of features to enhance your
+                  Posts Buddy includes a variety of features to enhance your
                   note-sharing experience, such as instant uploads, cross-device
                   sync, secure sharing, and organizational tools. It's free to
                   use forever.
@@ -42,11 +42,11 @@ export default function FAQ() {
             </AccordionItem>
             <AccordionItem value="question2">
               <AccordionTrigger className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-                How much does Notes Buddy cost?
+                How much does Posts Buddy cost?
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Notes Buddy is free to use. There are no hidden costs or
+                  Posts Buddy is free to use. There are no hidden costs or
                   premium plans. All features are available to every user at no
                   cost.
                 </p>
@@ -54,7 +54,7 @@ export default function FAQ() {
             </AccordionItem>
             <AccordionItem value="question3">
               <AccordionTrigger className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-                Is my data secure with Notes Buddy?
+                Is my data secure with Posts Buddy?
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -70,7 +70,7 @@ export default function FAQ() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Yes, Notes Buddy allows you to download your notes for offline
+                  Yes, Posts Buddy allows you to download your notes for offline
                   access. This feature ensures you can view your notes even
                   without an internet connection.
                 </p>
@@ -83,7 +83,7 @@ export default function FAQ() {
               <AccordionContent>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   You can easily share your notes by generating a shareable link
-                  or by directly sharing them with other Notes Buddy users.
+                  or by directly sharing them with other Posts Buddy users.
                   Sharing settings allow you to control who can view or edit
                   your notes.
                 </p>
@@ -91,11 +91,11 @@ export default function FAQ() {
             </AccordionItem>
             <AccordionItem value="question6">
               <AccordionTrigger className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-                What platforms does Notes Buddy support?
+                What platforms does Posts Buddy support?
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Notes Buddy is currently compatible with web devices only.
+                  Posts Buddy is currently compatible with web devices only.
                   Mobile support is coming soon, so stay tuned for updates!
                 </p>
               </AccordionContent>

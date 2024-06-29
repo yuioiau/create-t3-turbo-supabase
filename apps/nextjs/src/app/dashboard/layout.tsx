@@ -7,10 +7,10 @@ import { Layout } from "./_components/layout";
 
 export const metadata: Metadata = {
   title: {
-    default: "Dashboard - Notes Buddy",
-    template: `%s - Dashboard - Notes Buddy`,
+    default: "Dashboard - Posts Buddy",
+    template: `%s - Dashboard - Posts Buddy`,
   },
-  description: "Notes Buddy: A powerful notes sharing website.",
+  description: "Posts Buddy: A powerful notes sharing website.",
 };
 
 export default async function DashboardLayout({

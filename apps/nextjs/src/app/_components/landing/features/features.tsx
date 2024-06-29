@@ -18,7 +18,7 @@ export default function Features() {
               Essential tools for effortless note sharing
             </h2>
             <p className="max-w-[900px] text-gray-600 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Notes Buddy provides all the features you need to upload,
+              Posts Buddy provides all the features you need to upload,
               organize, and share your class notes seamlessly.
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function Features() {
                 Free Forever
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Enjoy all the features of Notes Buddy at no cost.
+                Enjoy all the features of Posts Buddy at no cost.
               </p>
             </CardHeader>
           </Card>
