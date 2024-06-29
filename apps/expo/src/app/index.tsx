@@ -12,11 +12,12 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
-import { Link, Stack } from "expo-router";
+import { Link } from "expo-router";
 import { FlashList } from "@shopify/flash-list";
 
 import type { RouterOutputs } from "~/utils/api";
-import { AuthAvatar } from "~/components/header";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { api } from "~/utils/api";
 
 function PostCard(props: { post: RouterOutputs["post"]["all"][number] }) {
@@ -33,8 +34,8 @@ function PostCard(props: { post: RouterOutputs["post"]["all"][number] }) {
   });
 
   return (
-    <View className="flex flex-row rounded-lg bg-muted p-4">
-      <View className="flex-grow">
+    <Card className="flex flex-row rounded-lg bg-muted p-4">
+      <CardContent className="flex-grow">
         <Link
           asChild
           href={{
@@ -55,11 +56,13 @@ function PostCard(props: { post: RouterOutputs["post"]["all"][number] }) {
             </View>
           </Pressable>
         </Link>
-      </View>
-      <Pressable onPress={() => deletePost(post.id)}>
-        <Text className="font-bold uppercase text-emerald-400">Delete</Text>
-      </Pressable>
-    </View>
+      </CardContent>
+      <CardFooter>
+        <Button onPress={() => deletePost(post.id)} variant="link">
+          <Text>Delete</Text>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
 
@@ -130,6 +133,7 @@ function CreatePost() {
   );
 }
 
+
 export default function HomeScreen() {
   const utils = api.useUtils();
 
@@ -137,32 +141,14 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView className="bg-background">
-      <Stack.Screen
-        options={{
-          headerLeft: () => <AuthAvatar />,
-          headerTitle: () => (
-            <Text className="text-3xl font-bold text-zinc-200">
-              <Text className="text-fuchsia-500">T3</Text>
-              <Text> x </Text>
-              <Text className="text-emerald-400">Supabase</Text>
-            </Text>
-          ),
-        }}
-      />
       <View className="h-full w-full bg-background p-4">
-        <Pressable
-          className="my-4 rounded bg-emerald-400 p-2"
+        <Button
+          className="my-4"
           onPress={() => void utils.post.all.invalidate()}
         >
           <Text className="font-semibold text-foreground">Refresh posts</Text>
-        </Pressable>
-
-        <View className="py-2">
-          <Text className="font-semibold italic text-primary">
-            Press on a post
-          </Text>
-        </View>
-
+        </Button>
+        
         <FlashList
           data={postQuery.data}
           estimatedItemSize={20}
