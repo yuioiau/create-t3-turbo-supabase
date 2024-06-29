@@ -1,9 +1,10 @@
 
 
 'use client';
-import React, { ReactNode } from 'react';
-import { motion, MotionProps } from 'framer-motion';
-import { cn } from '@acme/ui';
+import type { ReactNode } from 'react';
+import React from 'react';
+import type { MotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 type MotionWrapProps = {
   children: ReactNode;
