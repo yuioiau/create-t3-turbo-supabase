@@ -20,6 +20,8 @@ import { toast } from "@acme/ui/sonner";
 
 import { api } from "~/trpc/react";
 
+import { TrashIcon } from "lucide-react";
+
 export function CreatePostForm() {
   const form = useForm({
     schema: CreatePostSchema,
@@ -133,7 +135,7 @@ export function PostCard(props: {
   const { post } = props;
 
   return (
-    <div className="flex flex-row rounded-lg bg-muted p-4">
+    <div className="flex flex-row items-center rounded-lg bg-muted p-4">
       <Image
         className="mr-2 self-center rounded"
         src={post.author.image ?? ""}
@@ -142,16 +144,15 @@ export function PostCard(props: {
         height={64}
       />
       <div className="flex-grow">
-        <h2 className="text-2xl font-bold text-emerald-400">{post.title}</h2>
+        <h2 className="text-2xl font-bold">{post.title}</h2>
         <p className="mt-2 text-sm">{post.content}</p>
       </div>
       <div>
         <Button
-          variant="ghost"
-          className="cursor-pointer text-sm font-bold uppercase text-emerald-400 hover:bg-transparent hover:text-secondary-foreground"
+          size="icon"
           onClick={() => deletePost.mutate(props.post.id)}
         >
-          Delete
+          <TrashIcon className="w-4 h-4" />
         </Button>
       </div>
     </div>
