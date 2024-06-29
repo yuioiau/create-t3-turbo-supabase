@@ -11,7 +11,7 @@ interface LenisProps {
 }
 
 function SmoothScroll({ children }: LenisProps) {
-  const lenis = useLenis(({}) => {
+  const lenis = useLenis(() => {
     // called every scroll
   });
 

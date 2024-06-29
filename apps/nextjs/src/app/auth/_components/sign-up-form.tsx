@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   useForm,
 } from "@acme/ui/form";
@@ -40,13 +39,13 @@ export const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <div className="space-y-4">
+        <div className="space-y-2">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email address</FormLabel>
+                {/* <FormLabel>Email address</FormLabel> */}
                 <FormControl>
                   <Input
                     {...field}
@@ -65,7 +64,7 @@ export const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                {/* <FormLabel>Password</FormLabel> */}
                 <FormControl>
                   <Input
                     {...field}
