@@ -5,11 +5,13 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./*": "./src/*.tsx"
+    "./*": [
+      "./src/*.tsx",
+      "./src/*.ts"
+    ]
   },
   "license": "MIT",
   "scripts": {
-    "add": "pnpm dlx shadcn-ui add",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
@@ -43,24 +45,25 @@
     "react-resizable-panels": "^2.0.19",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@types/react": "^18.3.2",
-    "eslint": "^9.2.0",
-    "prettier": "^3.2.5",
+    "@types/react": "^18.3.3",
+    "eslint": "^9.4.0",
+    "prettier": "^3.3.1",
     "react": "18.3.1",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
-    "zod": "^3.23.6"
+    "zod": "^3.23.8"
   },
   "peerDependencies": {
     "react": "18.3.1",
-    "zod": "^3.23.6"
+    "zod": "^3.23.8"
   },
   "prettier": "@acme/prettier-config"
 }
