@@ -98,8 +98,8 @@ export function PostList(props: {
         <PostCardSkeleton pulse={false} />
         <PostCardSkeleton pulse={false} />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
-          <p className="text-2xl font-bold text-white">No posts yet</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <p className="text-2xl font-bold text-foreground">No posts yet</p>
         </div>
       </div>
     );
