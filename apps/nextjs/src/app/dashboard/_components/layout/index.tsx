@@ -35,6 +35,7 @@ import { TooltipProvider } from "@acme/ui/tooltip";
 import { Logo } from "~/app/dashboard/_components/layout/logo";
 import { Nav, NavProps } from "~/app/dashboard/_components/layout/nav";
 import UserAvatar from "../user-avatar";
+import { ThemeToggle } from "@acme/ui/theme";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -140,13 +141,16 @@ export function Layout({
                 {/* todo: make this and nav a combined list to loop through */}
                 <SheetContent side="left" className="sm:max-w-xs">
                   <nav className="grid gap-1 text-lg font-medium">
-                    <Link
-                      href="/dashboard"
-                      className="group mb-2 flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
-                    >
-                      <NotebookTextIcon className="h-5 w-5 transition-all group-hover:scale-110" />
-                      <span className="sr-only">Notes Buddy</span>
-                    </Link>
+                    <div className="flex justify-between items-center my-2">
+                      <Link
+                        href="/dashboard"
+                        className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                      >
+                        <NotebookTextIcon className="h-5 w-5 transition-all group-hover:scale-110" />
+                        <span className="sr-only">Notes Buddy</span>
+                      </Link>
+                      <ThemeToggle />
+                    </div>
                     <div className="-ml-2">
                       <Nav
                         isCollapsed={false}
