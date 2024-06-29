@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { createClient } from "~/utils/supabase/server";
 import { Layout } from "./_components/layout";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -31,21 +24,23 @@ export default async function DashboardLayout({
   const layout = cookies().get("react-resizable-panels:layout");
   const collapsed = cookies().get("react-resizable-panels:collapsed");
 
-  const defaultLayout =
-    (layout ? JSON.parse(layout.value) : undefined) ?? false;
-  const defaultCollapsed =
-    (collapsed ? JSON.parse(collapsed.value) : undefined) ?? false;
+  const defaultLayout = layout
+    ? (JSON.parse(layout.value) as number[])
+    : undefined;
+  const defaultCollapsed = collapsed
+    ? (JSON.parse(collapsed.value) as boolean)
+    : false;
 
   if (user.error ?? !user.data.user) redirect("/auth/signin");
 
   return (
-      <Layout
-        defaultLayout={defaultLayout}
-        defaultCollapsed={defaultCollapsed}
-        navCollapsedSize={4}
-        user={user}
-      >
-        {children}
-      </Layout>
+    <Layout
+      defaultLayout={defaultLayout}
+      defaultCollapsed={defaultCollapsed}
+      navCollapsedSize={4}
+      user={user}
+    >
+      {children}
+    </Layout>
   );
 }
