@@ -6,6 +6,8 @@ import React from 'react';
 import type { MotionProps } from 'framer-motion';
 import { motion } from 'framer-motion';
 
+import { cn } from '@acme/ui'
+
 type MotionWrapProps = {
   children: ReactNode;
   className?: string;
