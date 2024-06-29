@@ -52,20 +52,20 @@ const NAV_LINKS: NavProps['links'] = [
     icon: Home,
     variant: "default",
   },
-  {
-    title: "Trash",
-    label: "",
-    href: "/dashboard",
-    icon: Trash2,
-    variant: "ghost",
-  },
-  {
-    title: "Reported",
-    label: "",
-    href: "/dashboard",
-    icon: Flag,
-    variant: "ghost",
-  },
+  // {
+  //   title: "Trash",
+  //   label: "",
+  //   href: "/dashboard",
+  //   icon: Trash2,
+  //   variant: "ghost",
+  // },
+  // {
+  //   title: "Reported",
+  //   label: "",
+  //   href: "/dashboard",
+  //   icon: Flag,
+  //   variant: "ghost",
+  // },
 ]
 
 export function Layout({
@@ -163,7 +163,7 @@ export function Layout({
                       <Link href="#">Dashboard</Link>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
-                  <BreadcrumbSeparator />
+                  {/* <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
                       <Link href="#">Orders</Link>
@@ -172,7 +172,7 @@ export function Layout({
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbPage>Recent Orders</BreadcrumbPage>
-                  </BreadcrumbItem>
+                  </BreadcrumbItem> */}
                 </BreadcrumbList>
               </Breadcrumb>
               <div className="relative ml-auto flex-1 md:grow-0">
