@@ -18,7 +18,7 @@ import { useColorScheme } from "~/lib/use-color-scheme";
 import { TRPCProvider } from "~/utils/api";
 import { supabase } from "~/utils/supabase";
 
-import "../styles.css";
+import "~/styles.css";
 
 import { Text } from "~/components/ui/text";
 import { setAndroidNavigationBar } from "~/lib/android-navigation-bar";
