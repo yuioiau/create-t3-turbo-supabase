@@ -1,5 +1,7 @@
 # T3 Turbo x Supabase
 
+> This is a clone of trevorpfiz's t3-supabase with a landing page and react native reusables.
+
 ![CleanShot 2023-04-11 at 23 42 53@2x](https://user-images.githubusercontent.com/51714798/231294720-1c64b391-4ecf-42d2-aad2-8c486c5d6bf5.png)
 
 ## About
