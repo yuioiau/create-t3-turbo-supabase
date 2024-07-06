@@ -1,8 +1,6 @@
 import { cn } from "@acme/ui";
-import { Card, CardContent, CardFooter, CardHeader } from "@acme/ui/card";
 
 import { BackButton } from "~/app/auth/_components/back-button";
-import { Header } from "~/app/auth/_components/header";
 import { Social } from "~/app/auth/_components/social";
 
 interface CardWrapperProps {

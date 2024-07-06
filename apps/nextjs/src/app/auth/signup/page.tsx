@@ -1,4 +1,4 @@
-import { type Metadata } from "next";
+import type {Metadata} from "next";
 import Link from "next/link";
 import { NotebookTextIcon } from "lucide-react";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: 'Sign Up to Posts Buddy'
 };
 
-export default async function SignUpPage() {
+export default function SignUpPage() {
   return (
     <>
       <div className="container relative grid min-h-[100dvh] flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -34,7 +34,7 @@ export default async function SignUpPage() {
             href="/"
           >
             <NotebookTextIcon className="mr-2 h-6 w-6" />
-            Posts Buddy
+            Notes Buddy
           </Link>
           <div className="relative z-20 mt-auto">
             {/* <blockquote className="space-y-2">

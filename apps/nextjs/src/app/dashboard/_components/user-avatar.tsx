@@ -17,10 +17,8 @@ import Link from 'next/link';
 
 import { CreditCardIcon, LogOutIcon, UserIcon } from 'lucide-react';
 import { signOut } from '~/app/auth/actions';
-import { redirect } from 'next/navigation';
-import { toast } from 'sonner';
 
-import { UserResponse } from '@supabase/supabase-js';
+import type { UserResponse } from '@supabase/supabase-js';
 
 interface UserAvatarProps {
   user: UserResponse;

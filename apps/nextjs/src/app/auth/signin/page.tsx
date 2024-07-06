@@ -1,4 +1,4 @@
-import { type Metadata } from "next";
+import type {Metadata} from "next";
 import Link from "next/link";
 import { NotebookTextIcon } from "lucide-react";
 
@@ -41,7 +41,7 @@ export default async function SignInPage() {
             href="/"
           >
             <NotebookTextIcon className="mr-2 h-6 w-6" />
-            Posts Buddy
+            Notes Buddy
           </Link>
           <div className="relative z-20 mt-auto">
             {/* <blockquote className="space-y-2">

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { UserResponse } from "@supabase/supabase-js";
+import type { UserResponse } from "@supabase/supabase-js";
 import {
   Flag,
   Home,
@@ -21,7 +21,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@acme/ui/breadcrumb";
-import { Button, buttonVariants } from "@acme/ui/button";
+import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import {
   ResizableHandle,
@@ -33,7 +33,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@acme/ui/sheet";
 import { TooltipProvider } from "@acme/ui/tooltip";
 
 import { Logo } from "~/app/dashboard/_components/layout/logo";
-import { Nav, NavProps } from "~/app/dashboard/_components/layout/nav";
+import type { NavProps } from "~/app/dashboard/_components/layout/nav";
+import { Nav } from "~/app/dashboard/_components/layout/nav";
 import UserAvatar from "../user-avatar";
 import { ThemeToggle } from "@acme/ui/theme";
 
@@ -45,7 +46,7 @@ interface LayoutProps {
   navCollapsedSize: number;
 }
 
-const NAV_LINKS: NavProps['links'] = [
+const NAV_LINKS: NavProps["links"] = [
   {
     title: "Home",
     label: "",
@@ -53,21 +54,21 @@ const NAV_LINKS: NavProps['links'] = [
     icon: Home,
     variant: "default",
   },
-  // {
-  //   title: "Trash",
-  //   label: "",
-  //   href: "/dashboard",
-  //   icon: Trash2,
-  //   variant: "ghost",
-  // },
-  // {
-  //   title: "Reported",
-  //   label: "",
-  //   href: "/dashboard",
-  //   icon: Flag,
-  //   variant: "ghost",
-  // },
-]
+  {
+    title: "Trash",
+    label: "",
+    href: "/dashboard",
+    icon: Trash2,
+    variant: "ghost",
+  },
+  {
+    title: "Reported",
+    label: "",
+    href: "/dashboard",
+    icon: Flag,
+    variant: "ghost",
+  },
+];
 
 export function Layout({
   children,
@@ -118,10 +119,7 @@ export function Layout({
             <Logo isCollapsed={isCollapsed} />
           </div>
           <Separator />
-          <Nav
-            isCollapsed={isCollapsed}
-            links={NAV_LINKS}
-          />
+          <Nav isCollapsed={isCollapsed} links={NAV_LINKS} />
         </ResizablePanel>
         <ResizableHandle withHandle className="hidden sm:flex" />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
@@ -147,15 +145,12 @@ export function Layout({
                         className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                       >
                         <NotebookTextIcon className="h-5 w-5 transition-all group-hover:scale-110" />
-                        <span className="sr-only">Posts Buddy</span>
+                        <span className="sr-only">Notes Buddy</span>
                       </Link>
                       <ThemeToggle />
                     </div>
                     <div className="-ml-2">
-                      <Nav
-                        isCollapsed={false}
-                        links={NAV_LINKS}
-                      />
+                      <Nav isCollapsed={false} links={NAV_LINKS} />
                     </div>
                   </nav>
                 </SheetContent>
@@ -167,7 +162,7 @@ export function Layout({
                       <Link href="#">Dashboard</Link>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
-                  {/* <BreadcrumbSeparator />
+                  <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
                       <Link href="#">Orders</Link>
@@ -176,7 +171,7 @@ export function Layout({
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbPage>Recent Orders</BreadcrumbPage>
-                  </BreadcrumbItem> */}
+                  </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
               <div className="relative ml-auto flex-1 md:grow-0">

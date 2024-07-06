@@ -1,6 +1,5 @@
 
-import { type Metadata } from 'next';
-import Image from 'next/image';
+import type {Metadata} from 'next';
 
 import { Separator } from '@acme/ui/separator';
 import { SidebarNav } from '~/app/dashboard/settings/_components/sidebar-nav';
