@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import Image from "next/image";
 
 import type { RouterOutputs } from "@acme/api";
@@ -13,10 +12,11 @@ import {
   FormField,
   FormItem,
   FormMessage,
-  useForm,
 } from "@acme/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/sonner";
+import { toast } from "sonner";
 
 import { api } from "~/trpc/react";
 
@@ -24,7 +24,7 @@ import { TrashIcon } from "lucide-react";
 
 export function CreatePostForm() {
   const form = useForm({
-    schema: CreatePostSchema,
+    resolver: zodResolver(CreatePostSchema),
     defaultValues: {
       content: "",
       title: "",
@@ -84,14 +84,8 @@ export function CreatePostForm() {
   );
 }
 
-export function PostList(props: {
-  posts: Promise<RouterOutputs["post"]["all"]>;
-}) {
-  // TODO: Make `useSuspenseQuery` work without having to pass a promise from RSC
-  const initialData = use(props.posts);
-  const { data: posts } = api.post.all.useQuery(undefined, {
-    initialData,
-  });
+export function PostList() {
+  const [posts] = api.post.all.useSuspenseQuery();
 
   if (posts.length === 0) {
     return (
