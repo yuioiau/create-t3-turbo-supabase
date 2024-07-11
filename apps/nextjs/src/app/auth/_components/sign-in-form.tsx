@@ -10,8 +10,9 @@ import {
   FormField,
   FormItem,
   FormMessage,
-  useForm,
 } from "@acme/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { Input } from "@acme/ui/input";
 import { SignInSchema } from "@acme/validators";
 
@@ -22,7 +23,7 @@ import { LoaderCircleIcon } from "lucide-react";
 
 export const SignInForm = () => {
   const form = useForm({
-    schema: SignInSchema,
+    resolver: zodResolver(SignInSchema),
     defaultValues: {
       email: "",
       password: "",
